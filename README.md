@@ -33,16 +33,32 @@ Then you will be inside a contianer running over the same docker-compose rules o
 ##### Notes
 
  - It assumes that the project to be edited is inside `/root/projects` folder in your host.
- - Consider mounting a `.bashrc` file into the home of the container so your commands history will be saved.
  - Any host port can be used instead 10001, but container port must be 22. You can't use the same host port in different containers.
-
+ - Replace `krautzera/devbase` in image with the desired one with the service language, like: `krautzera/godev`
+ - Consider mounting a `.bashrc` file into the home of the container so your commands history will be saved.
+ - When entering the container via ssh, environment variables won't take effect, you'll have to re-define them on the mounted .bashrc (on bash exec they will work just fine).
+ - Consider mounting as well your .gitconfig file to create commits with correct author.
+ - Development containers password is `senhaboa`. If you don't want to type it every connection, add your's VM pub key to authorized_keys on the contianer.
+ - Useful command to link VM's files to home mount point on containers are `ln <ORIGIN> <DESTINATION>`
 
 ### Build and Publish
 
-devbase:
+#### Base Image for Development Containers
 ```
 docker build -t krautzera/devbase:X.Y.Z -t krautzera/devbase:latest -f Dockerfile.devbase .
 docker login
 docker push krautzera/devbase:X.Y.X
 docker push krautzera/devbase:latest 
 ```
+
+#### Golang Development Container
+```
+docker build --build-arg version=X.Y.Z -t krautzera/godev:X.Y.Z -t krautzera/godev:latest -f Dockerfile.godev .
+docker login
+docker push krautzera/godev:X.Y.Z
+docker push krautzera/godev:latest
+```
+
+##### Notes
+ - Version used in godev image is based on the golang version (argument version refers to golang version to be installed).
+ - If connecting via ssh, remember to add a .bashrc file setting `GOPATH` and `PATH` environment variables.

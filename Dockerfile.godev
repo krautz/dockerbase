@@ -1,0 +1,17 @@
+# set base image
+FROM krautzera/devbase:latest
+
+# set arg for golang version
+ARG version
+
+# install golang
+RUN cd /tmp \
+ && curl -O https://dl.google.com/go/go${version}.linux-amd64.tar.gz \
+ && tar -C /usr/local -xzf go${version}.linux-amd64.tar.gz
+
+# set golang environment variables
+ENV GOPATH=$HOME/go
+ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# set command to run
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
