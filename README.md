@@ -62,3 +62,15 @@ docker push krautzera/godev:latest
 ##### Notes
  - Version used in godev image is based on the golang version (argument version refers to golang version to be installed).
  - If connecting via ssh, remember to add a .bashrc file setting `GOPATH` and `PATH` environment variables.
+
+
+#### Node Development Container
+```
+docker build --build-arg version=X.Y.Z -t krautzera/nodedev:X.Y.Z -t krautzera/nodedev:latest -f Dockerfile.nodedev .
+docker login
+docker push krautzera/nodedev:X.Y.Z
+docker push krautzera/nodedev:latest
+```
+
+##### Notes
+ - Version used in nodedev image is based on the nodejs version (argument version refers to nodejs version to be installed).

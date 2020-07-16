@@ -1,0 +1,13 @@
+# set base image
+FROM krautzera/devbase:latest
+
+# set arg for nodejs version
+ARG version
+
+# install nodejs
+RUN cd /tmp/ \
+ && wget http://nodejs.org/dist/v${version}/node-v${version}-linux-x64.tar.gz \
+ && tar --strip-components 1 -xzvf node-v${version}-linux-x64.tar.gz -C /usr/local
+
+# set command to run
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
