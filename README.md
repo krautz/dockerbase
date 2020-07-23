@@ -53,9 +53,9 @@ docker push krautzera/devbase:latest
 
 #### Golang Development Container
 ```
-docker build --build-arg version=X.Y.Z -t krautzera/godev:X.Y.Z -t krautzera/godev:latest -f Dockerfile.godev .
+docker build --build-arg version=X.Y.Z -t krautzera/godev:X.Y.Z-YYYYMMDD -t krautzera/godev:latest -f Dockerfile.godev .
 docker login
-docker push krautzera/godev:X.Y.Z
+docker push krautzera/godev:X.Y.Z-YYYYMMDD
 docker push krautzera/godev:latest
 ```
 
@@ -66,9 +66,9 @@ docker push krautzera/godev:latest
 
 #### Node Development Container
 ```
-docker build --build-arg version=X.Y.Z -t krautzera/nodedev:X.Y.Z -t krautzera/nodedev:latest -f Dockerfile.nodedev .
+docker build --build-arg version=X.Y.Z -t krautzera/nodedev:X.Y.Z-YYYYMMDD -t krautzera/nodedev:latest -f Dockerfile.nodedev .
 docker login
-docker push krautzera/nodedev:X.Y.Z
+docker push krautzera/nodedev:X.Y.Z-YYYYMMDD
 docker push krautzera/nodedev:latest
 ```
 
